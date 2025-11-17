@@ -49,3 +49,19 @@ export async function login(req, res) {
         token,
     });
 }
+
+export async function getCurrentUser(req, res) {
+    const user = await User.findByPk(req.user.id);
+
+    if (!user) {
+        return res.status(404).json({
+            message: "User not found",
+        });
+    }
+
+    res.json({
+        id: user.id,
+        name: user.name,
+        email: user.email,
+    });
+}
