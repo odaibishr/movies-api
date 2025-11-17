@@ -15,7 +15,7 @@ export async function register(req, res) {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
     const newUser = await User.create({
-        neme: req.body.name,
+        name: req.body.name,
         email: req.body.email,
         password: hashedPassword,
     });
@@ -28,5 +28,24 @@ export async function register(req, res) {
             id: newUser.id,
             name: newUser.name
         }
+    });
+}
+
+export async function login(req, res) {
+    const user = await User.findOne({ where: { email: req.body.email } });
+
+    if (!user) {
+        return res.status(404).json({ message: "Email or password is worng" });
+    }
+
+    const isPasswordValid = await bcrypt.compare(req.body.password, user.password);
+    if (!isPasswordValid) {
+        return res.status(404).json({ message: "Email or password is worng" });
+    }
+
+    const token = generateToken(user.id);
+
+    res.status(200).json({
+        token,
     });
 }

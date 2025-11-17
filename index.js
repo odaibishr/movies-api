@@ -1,6 +1,7 @@
 import express from 'express';
 import morgan from 'morgan';
 import { initDB } from './utils/db.js';
+import authRouter from './routes/auth.route.js';
 
 initDB();
 
@@ -8,10 +9,13 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(morgan('dev'));
+app.use(express.json());
 
 app.get('/', (req, res) => {
     res.json({ message: 'Welcome to the Movies API' });
 })
+
+app.use('/api/auth', authRouter);
 
 app.use((req, res) => {
     res.status(404).json({ error: 'Not found' });
