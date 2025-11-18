@@ -18,4 +18,10 @@ router.put('/:id',
     asyncHandler(moviesController.updateMovie)
 );
 
+router.delete('/:id',
+    authenticateUser,
+    asyncHandler(authenticateAdmin),
+    asyncHandler(moviesController.deleteMovie),
+);
+
 export default router;

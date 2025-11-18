@@ -27,3 +27,19 @@ export async function updateMovie(req, res) {
 
     res.status(200).json(movie);
 }
+
+export async function deleteMovie(req, res) {
+    const movie = await Movie.findByPk(req.params.id);
+
+    if (!movie) {
+        return res.status(404).json({
+            message: "Movie not found",
+        });
+    }
+
+    await movie.destroy();
+
+    res.status(204).json({
+        message: "Movie deleted",
+    });
+}
