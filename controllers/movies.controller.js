@@ -6,6 +6,18 @@ export async function getAllMovies(req, res) {
     res.status(200).json(movies);
 }
 
+export async function getMovie(req, res) {
+    const movie = await Movie.findByPk(req.params.id);
+
+    if (!movie) {
+        return res.status(404).json({
+            message: "Movie not found",
+        });
+    }
+
+    res.status(200).json(movie);
+}
+
 export async function createMovie(req, res) {
     const newMovie = await Movie.create({
         name: req.body.name,

@@ -8,6 +8,8 @@ const router = express.Router();
 
 router.get('/', asyncHandler(moviesController.getAllMovies));
 
+router.get('/:id', asyncHandler(moviesController.getMovie));
+
 router.post('/',
     authenticateUser,
     asyncHandler(authenticateAdmin),
