@@ -21,4 +21,11 @@ const User = sequelize.define('users', {
     }
 });
 
+User.associate = (models) => {
+    User.hasMany(models.Review, {
+        foreignKey: 'userId',
+        as: 'reviews',
+    });
+}
+
 export { User };
