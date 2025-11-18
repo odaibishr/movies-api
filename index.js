@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import { initDB } from './utils/db.js';
 import authRouter from './routes/auth.route.js';
 import moviesRouter from './routes/movies.routes.js';
+import reviewsRouter from './routes/reviews.routes.js';
 import { createDefaultAdmin } from './utils/admin.js';
 
 initDB().then(() => {
@@ -21,6 +22,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/auth', authRouter);
 app.use('/api/movies', moviesRouter);
+app.use('/api/reviews', reviewsRouter);
 
 app.use((req, res) => {
     res.status(404).json({ error: 'Not found' });
