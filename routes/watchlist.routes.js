@@ -10,4 +10,9 @@ router.post('/:movieId',
     asyncHandler(whachListController.addToWatchList)
 );
 
+router.get('/',
+    authenticateUser,
+    asyncHandler(whachListController.getWatchList)
+);
+
 export default router;

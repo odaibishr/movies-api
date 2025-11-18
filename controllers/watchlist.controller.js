@@ -1,4 +1,4 @@
-import { WatchList } from "../models/index.js";
+import { Movie, WatchList } from "../models/index.js";
 
 export async function addToWatchList(req, res) {
     const existingMovie = await WatchList.findOne({
@@ -20,4 +20,22 @@ export async function addToWatchList(req, res) {
     });
 
     res.status(201).json(newWatchListItem);
+}
+
+
+export async function getWatchList(req, res) {
+    const warchList = await WatchList.findAll({
+        where: {
+            userId: req.user.id,
+        },
+        include: [
+            {
+                model: Movie,
+                as: 'movie',
+                attributes: ['id', 'name', 'genre']
+            },
+        ]
+    });
+
+    res.json(warchList);
 }
