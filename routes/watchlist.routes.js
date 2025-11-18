@@ -15,4 +15,9 @@ router.get('/',
     asyncHandler(whachListController.getWatchList)
 );
 
+router.delete('/:movieId',
+    authenticateUser,
+    asyncHandler(whachListController.removeFromWatchList)
+);
+
 export default router;

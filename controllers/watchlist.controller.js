@@ -39,3 +39,16 @@ export async function getWatchList(req, res) {
 
     res.json(warchList);
 }
+
+export async function removeFromWatchList(req, res) {
+    await WatchList.destroy({
+        where: {
+            userId: req.user.id,
+            movieId: +req.params.movieId,
+        },
+    });
+        
+    res.json({
+        message: "Movie removed from watchlist",
+    });
+}
