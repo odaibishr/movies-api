@@ -2,8 +2,12 @@ import express from 'express';
 import morgan from 'morgan';
 import { initDB } from './utils/db.js';
 import authRouter from './routes/auth.route.js';
+import moviesRouter from './routes/movies.routes.js';
+import { createDefaultAdmin } from './utils/admin.js';
 
-initDB();
+initDB().then(() => {
+    createDefaultAdmin();
+});
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -16,6 +20,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/auth', authRouter);
+app.use('/api/movies', moviesRouter);
 
 app.use((req, res) => {
     res.status(404).json({ error: 'Not found' });

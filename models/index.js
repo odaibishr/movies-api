@@ -1,7 +1,9 @@
 import { User } from "./users.model.js";
+import { Movie } from "./movies.model.js";
 
 const models = {
-    User
+    User,
+    Movie
 }
 
-export { User };
+export { User, Movie };
