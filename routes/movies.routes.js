@@ -12,4 +12,10 @@ router.post('/',
     asyncHandler(moviesController.createMovie)
 );
 
+router.put('/:id',
+    authenticateUser,
+    asyncHandler(authenticateAdmin),
+    asyncHandler(moviesController.updateMovie)
+);
+
 export default router;
