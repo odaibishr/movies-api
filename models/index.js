@@ -1,11 +1,13 @@
 import { User } from "./users.model.js";
 import { Movie } from "./movies.model.js";
 import { Review } from "./reviews.model.js";
+import { WatchList } from "./watchlist.model.js";
 
 const models = {
     User,
     Movie,
-    Review
+    Review,
+    WatchList
 }
 
 Object.keys(models).forEach((modelName) => {
@@ -14,4 +16,4 @@ Object.keys(models).forEach((modelName) => {
     }
 })
 
-export { User, Movie, Review };
+export { User, Movie, Review, WatchList };

@@ -23,6 +23,11 @@ Movie.associate = (models) => {
         foreignKey: 'movieId',
         as: 'reviews',
     }); 
+
+    Movie.hasMany(models.WatchList, {
+        foreignKey: 'movieId',
+        as: 'watchlists'
+    });
 }
 
 export { Movie };

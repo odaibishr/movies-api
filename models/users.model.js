@@ -26,6 +26,11 @@ User.associate = (models) => {
         foreignKey: 'userId',
         as: 'reviews',
     });
+
+    User.hasMany(models.WatchList, {
+        foreignKey: 'userId',
+        as: 'watchlists'
+    });
 }
 
 export { User };
