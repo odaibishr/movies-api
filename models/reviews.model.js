@@ -15,7 +15,7 @@ const Review = sequelize.define('reviews', {
         allowNull: false,
     },
     movieId: {
-        type: DataTypes.INETGER,
+        type: DataTypes.INTEGER,
         allowNull: false,
     }
 });
