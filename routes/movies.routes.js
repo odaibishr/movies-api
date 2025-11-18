@@ -6,6 +6,8 @@ import { authenticateAdmin } from '../middlewares/admin.middleware.js';
 
 const router = express.Router();
 
+router.get('/', asyncHandler(moviesController.getAllMovies));
+
 router.post('/',
     authenticateUser,
     asyncHandler(authenticateAdmin),

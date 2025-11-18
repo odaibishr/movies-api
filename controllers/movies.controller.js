@@ -1,5 +1,11 @@
 import { Movie } from "../models/index.js";
 
+export async function getAllMovies(req, res) {
+    const movies = await Movie.findAll();
+
+    res.status(200).json(movies);
+}
+
 export async function createMovie(req, res) {
     const newMovie = await Movie.create({
         name: req.body.name,
